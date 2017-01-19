@@ -70,15 +70,19 @@ bool IsNumberEven(int element);
 bool Contains(char num, char elements[]);
 
 int main(int argc, char** argv) {
-   
+
     char line[100] = "\ewf54fwe-51-651few15wfe42";
-    int l = Length(line);
+    char numbers[]= "123456789";
+    int size = Length(line);
     int i;
-    for(i = 0; i < l; i++){
-        if(IsNumberEven(atoi(line[i]))){
-        Insert(line[i]);
+      
+     for (i = 0; i < size; i++) {
+        if (Contains(line[i], numbers)) {
+            int number = (int) line[i] - '0';
+            Insert(number);
+        }
     }
-    }
+    
    PrintList();
    printf("\n");
      

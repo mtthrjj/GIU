@@ -1,0 +1,110 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <string.h>
+
+struct node {
+   int data;
+   struct node *prev;
+   struct node *next;
+};
+
+struct node *head = NULL;
+struct node *last = NULL;
+struct node *current = NULL;
+
+void Insert(int data) {
+   
+   struct node *link = (struct node*) malloc(sizeof(struct node));
+
+   link->data = data;
+   link->prev = NULL;
+   link->next = NULL;
+ 
+   if(head == NULL) {
+      head = link;
+      return;
+   }
+   current = head;
+   
+   while(current->next!=NULL)
+      current = current->next;
+ 
+   current->next = link;
+   last = link;
+   link->prev = current;
+}
+
+void PrintList() {
+   struct node *ptr = head;
+
+   while(ptr->next != NULL) {        
+      printf(" %d ",ptr->data);
+      ptr = ptr->next;
+   }
+   printf(" %d" ,ptr->data);
+}
+
+bool ContainsList(int data)
+{
+   
+  while (head != NULL) {
+        if (head->data == data)
+            return true;
+        head = head->next;
+    }
+    return false;
+}
+
+int CountNodes() {
+    int count = 0;
+    while (head != NULL) {
+        count++;
+        head = head->next;
+    }
+    return count;
+}
+
+int Length(char elems[]);
+bool IsNumberEven(int element);
+bool Contains(char num, char elements[]);
+
+int main(int argc, char** argv) {
+   
+    char line[100] = "\ewf54fwe-51-651few15wfe42";
+    int l = Length(line);
+    int i;
+    for(i = 0; i < l; i++){
+        if(IsNumberEven(atoi(line[i]))){
+        Insert(line[i]);
+    }
+    }
+   PrintList();
+   printf("\n");
+     
+   int cnt = CountNodes();
+   printf("Count: %d \n", cnt);
+   
+ 
+    return (EXIT_SUCCESS);
+}
+
+int Length(char elements[]) {
+    return strlen(elements);
+}
+
+bool IsNumberEven(int element) {
+    if (element % 2 == 0)
+        return true;
+    return false;
+}
+
+bool Contains(char num, char elements[]) {
+    int size = Length(elements);
+    for (int i = 0; i < size; i++) {
+        if (elements[i] == num) {
+            return true;
+        }
+    }
+    return false;
+}
